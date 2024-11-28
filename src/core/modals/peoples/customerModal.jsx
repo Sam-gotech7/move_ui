@@ -233,13 +233,19 @@ const CustomerModal = () => {
                       <div className="col-lg-6 pe-0">
                         <div className="mb-3">
                           <label className="form-label">City</label>
-                          <Select classNamePrefix="react-select" options={varrelOptions} />
+                          <Select
+                            classNamePrefix="react-select"
+                            options={varrelOptions}
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 pe-0">
                         <div className="mb-3">
                           <label className="form-label">Country</label>
-                          <Select classNamePrefix="react-select" options={germanyOptions} />
+                          <Select
+                            classNamePrefix="react-select"
+                            options={germanyOptions}
+                          />
                         </div>
                       </div>
                       <div className="col-lg-12">

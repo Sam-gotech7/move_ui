@@ -29,10 +29,24 @@ import { lowstockdata } from "../json/lowstockdata";
 import { categorylist } from "../json/categorylistdata";
 import { subcateorydata } from "../json/subcategorydata";
 import { callhistorydata } from "../json/callhistorydata";
-import { productlistdata } from '../json/productlistdata'
+import { productlistdata } from "../json/productlistdata";
+import store from "./store";
 // const { productlistdata } = require("../json/productlistdata");
 
+// function loadAdminInfo() {
+//   const storedData = localStorage.getItem("admininfo");
+//   if ( storedData) {
+//     try {
+//       adminInfo = JSON.parse(storedData);
+//     } catch (error) {
+//       console.log("Failed to parse adminInfo from localStorage:", error);
+//     }
+//   }
+//   return adminInfo;
+// }
 
+// // adminInfo = loadAdminInfo();
+// console.log("11111", adminInfo);
 const initialState = {
   product_list: productlistdata,
   dashboard_recentproduct: dashboarrecentproductddata,
@@ -62,6 +76,10 @@ const initialState = {
   leavesadmin_data: leavesadmindata,
   leavetypes_data: leavetypedata,
   holiday_data: leavedata,
+  admin_data:
+    localStorage.getItem("admininfo") !== null
+      ? JSON.parse(localStorage.getItem("admininfo"))
+      : [],
   expiredproduct_data: expiredproduct,
   lowstock_data: lowstockdata,
   categotylist_data: categorylist,

@@ -287,6 +287,13 @@ export const SidebarData = [
 
     submenuItems: [
       {
+        label: "Admins",
+        link: "/admins",
+        icon: <Icon.UserPlus />,
+        showSubRoute: false,
+        submenu: false,
+      },
+      {
         label: "Customers",
         link: "/customers",
         icon: <Icon.User />,

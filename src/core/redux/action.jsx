@@ -97,6 +97,25 @@ export const setcustomer_data = (payload) => ({
   type: "customer_data",
   payload,
 });
+export const admin_data = () => ({ type: "admin_data" });
+
+export const setadmin_data = (payload) => ({
+  type: "add_admin",
+  payload: payload,
+});
+
+export const delete_admin_data = () => ({ type: "admin_data" });
+export const set_delete_admin = (payload) => ({
+  type: "delete_admin",
+  payload: payload,
+});
+
+export const editAdmin_data = () => ({ type: "admin_data" });
+export const set_edit_admin=(payload)=>({
+  type:"edit_admin",
+  payload:payload,
+})
+
 export const userlist_data = () => ({ type: "Userlist_data" });
 export const setuserlist_data = (payload) => ({
   type: "Userlist_data",

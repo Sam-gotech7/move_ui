@@ -39,6 +39,30 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, quotationlist_data: action.payload };
     case "customer_data":
       return { ...state, customerdata: action.payload };
+
+    case "add_admin":
+      console.log(state.admin_data);
+      localStorage.setItem(
+        "admininfo",
+        JSON.stringify([...state.admin_data, action.payload])
+      );
+      console.log([...state.admin_data, action.payload]);
+      return { ...state, admin_data: [...state.admin_data, action.payload] };
+
+    case "edit_admin":
+      const EditnewState = state.admin_data.map((item) =>
+        item.id === action.payload.id ? action.payload : item
+      );
+      localStorage.setItem("admininfo", JSON.stringify(EditnewState));
+      return { ...state, admin_data: EditnewState };
+    case "delete_admin":
+      console.log("aaaaaaaaaaa",action.payload)
+      const DeletenewState = [...state.admin_data].filter((item) => {
+        console.log(item)
+        return item.id !== action.payload.id;
+      });
+      localStorage.setItem("admininfo", JSON.stringify(DeletenewState));
+      return { ...state, admin_data: DeletenewState };
     case "Userlist_data":
       return { ...state, userlist_data: action.payload };
     case "Rolesandpermission_data":

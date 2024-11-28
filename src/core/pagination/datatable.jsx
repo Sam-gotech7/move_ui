@@ -13,6 +13,7 @@ const Datatable = ({ props, columns, dataSource }) => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+  console.log("aaaaaaaaaaaaaaaa",dataSource);
   return (
     <Table
       key={props}

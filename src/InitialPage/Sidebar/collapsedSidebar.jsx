@@ -49,7 +49,10 @@ const CollapsedSidebar = () => {
                   role="tab"
                   aria-selected="true"
                 >
-                  <ImageWithBasePath src="assets/img/icons/menu-icon.svg" alt="img" />
+                  <ImageWithBasePath
+                    src="assets/img/icons/menu-icon.svg"
+                    alt="img"
+                  />
                 </Link>
               </li>
               <li className="nav-item" role="presentation">
@@ -62,7 +65,10 @@ const CollapsedSidebar = () => {
                   role="tab"
                   aria-selected="false"
                 >
-                  <ImageWithBasePath src="assets/img/icons/product.svg" alt="img" />
+                  <ImageWithBasePath
+                    src="assets/img/icons/product.svg"
+                    alt="img"
+                  />
                 </Link>
               </li>
               <li className="nav-item" role="presentation">
@@ -127,7 +133,10 @@ const CollapsedSidebar = () => {
                   role="tab"
                   aria-selected="true"
                 >
-                  <ImageWithBasePath src="assets/img/icons/printer.svg" alt="" />
+                  <ImageWithBasePath
+                    src="assets/img/icons/printer.svg"
+                    alt=""
+                  />
                 </Link>
               </li>
               <li className="nav-item" role="presentation">
@@ -393,7 +402,7 @@ const CollapsedSidebar = () => {
             <ul className="tab-pane" id="user" aria-labelledby="set-tab">
               <li>
                 <Link to="customers">
-                  <span>Customers</span>
+                  <span>Custom</span>
                 </Link>
               </li>
               <li>

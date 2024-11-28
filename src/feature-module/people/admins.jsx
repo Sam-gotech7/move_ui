@@ -5,27 +5,37 @@ import { Filter, Sliders } from "react-feather";
 import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import Select from "react-select";
 import { Edit, Eye, Globe, Trash2, User } from "react-feather";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Table from "../../core/pagination/datatable";
-import CustomerModal from "../../core/modals/peoples/customerModal";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
-const Customers = () => {
-  const data = useSelector((state) => state.customerdata);
+import AdminModal from "../../core/modals/peoples/adminModal.jsx";
+import { set_delete_admin } from "../../core/redux/action.jsx";
+const Admins = () => {
+  const data = useSelector((state) => state.admin_data);
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const toggleFilterVisibility = () => {
     setIsFilterVisible((prevVisibility) => !prevVisibility);
   };
 
+  const [curAdmin, setCurAdmin] = useState(null);
+
+const dispatch=useDispatch()
+
+
+  const handleDeleteAdmin=(record)=>{
+        console.log(record)
+        dispatch(set_delete_admin(record))
+
+  }
   const options = [
     { value: "sortByDate", label: "Sort by Date" },
     { value: "140923", label: "14 09 23" },
     { value: "110923", label: "11 09 23" },
   ];
   const optionsTwo = [
-    { label: "Choose Customer Name", value: "" },
+    { label: "Choose Admin Name", value: "" },
     { label: "Benjamin", value: "Benjamin" },
     { label: "Ellen", value: "Ellen" },
     { label: "Freda", value: "Freda" },
@@ -40,33 +50,34 @@ const Customers = () => {
 
   const columns = [
     {
-      title: "Customer Name",
-      dataIndex: "CustomerName",
-      sorter: (a, b) => a.AdminName.length - b.AdminName.length,
+      title: "AdminName",
+      dataIndex: "AdminName",
+      sorter: (a, b) => {
+        console.log(a),
+        a.AdminName.length - b.AdminName.length},
     },
-
     {
       title: "Email",
       dataIndex: "Email",
-      sorter: (a, b) => a.email.length - b.email.length,
+      sorter: (a, b) => a.Email.length - b.Email.length,
     },
 
     {
       title: "Phone",
       dataIndex: "Phone",
-      sorter: (a, b) => a.phone.length - b.phone.length,
+      sorter: (a, b) => a.Phone.length - b.Phone.length,
     },
 
     {
       title: "Country",
       dataIndex: "Country",
-      sorter: (a, b) => a.country.length - b.country.length,
+      render: (text, record) => record?.Country?.label || "",
+      sorter: (a, b) => a.Country.label.length - b.Country.label.length,
     },
-
     {
       title: "Action",
       dataIndex: "action",
-      render: () => (
+      render: (text, record) => (
         <div className="action-table-data">
           <div className="edit-delete-action">
             <div className="input-block add-lists"></div>
@@ -79,7 +90,10 @@ const Customers = () => {
               className="me-2 p-2"
               to="#"
               data-bs-toggle="modal"
-              data-bs-target="#edit-units"
+              data-bs-target="#add-units"
+              onClick={() => {
+                setCurAdmin(record);
+              }}
             >
               <Edit className="feather-edit" />
             </Link>
@@ -87,20 +101,22 @@ const Customers = () => {
             <Link
               className="confirm-text p-2"
               to="#"
-              onClick={showConfirmationAlert}
+              onClick={()=>{
+                showConfirmationAlert(record);
+              }}
             >
               <Trash2 className="feather-trash-2" />
             </Link>
           </div>
         </div>
       ),
-      sorter: (a, b) => a.createdby.length - b.createdby.length,
+      //sorter: (a, b) => a.createdby.length - b.createdby.length,
     },
   ];
 
   const MySwal = withReactContent(Swal);
 
-  const showConfirmationAlert = () => {
+  const showConfirmationAlert = (record) => {
     MySwal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -111,27 +127,34 @@ const Customers = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        MySwal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          className: "btn btn-success",
-          confirmButtonText: "OK",
-          customClass: {
-            confirmButton: "btn btn-success",
-          },
-        });
+        try{
+          handleDeleteAdmin(record);
+          MySwal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            className: "btn btn-success",
+            confirmButtonText: "OK",
+            customClass: {
+              confirmButton: "btn btn-success",
+            },
+          });
+        }
+        catch(err){
+          console.log(err)
+        }
       } else {
         MySwal.close();
       }
     });
   };
+
   return (
     <div className="page-wrapper">
       <div className="content">
         <Breadcrumbs
-          maintitle="Customer List"
+          maintitle="Admin List"
           subtitle="Manage Your Expense Category"
-          addButton="Add New Customer"
+          addButton="Add New Admin"
         />
 
         {/* /product list */}
@@ -195,7 +218,7 @@ const Customers = () => {
                         className="img-select"
                         classNamePrefix="react-select"
                         options={optionsTwo}
-                        placeholder="Choose Customer Name"
+                        placeholder="Choose Admin Name"
                       />
                     </div>
                   </div>
@@ -237,9 +260,9 @@ const Customers = () => {
         </div>
         {/* /product list */}
       </div>
-      <CustomerModal />
+      <AdminModal curAdmin={curAdmin} setCurAdmin={setCurAdmin} />
     </div>
   );
 };
 
-export default Customers;
+export default Admins;

@@ -12,6 +12,7 @@ import { setToogleHeader } from "./redux/action";
 
 const Breadcrumbs = (props) => {
   const location = useLocation();
+  // console.log("BRead");
   const data = useSelector((state) => state.toggle_header);
 
   let addButton = null;
@@ -180,6 +181,7 @@ const Breadcrumbs = (props) => {
     location.pathname == "/expense-list" ||
     location.pathname == "/expense-category" ||
     location.pathname == "/customers" ||
+    location.pathname == "/admins" ||
     location.pathname == "/warehouse" ||
     location.pathname == "/store-list" ||
     location.pathname == "/suppliers" ||

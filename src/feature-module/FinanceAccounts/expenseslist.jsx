@@ -93,21 +93,21 @@ const ExpensesList = () => {
           <div className="edit-delete-action">
             <Link className="me-2 p-2 mb-0" to="#">
               <i data-feather="eye" className="feather-eye"></i>
-           </Link>
+            </Link>
             <Link
               className="me-2 p-2 mb-0"
               data-bs-toggle="modal"
               data-bs-target="#edit-units"
             >
               <i data-feather="edit" className="feather-edit"></i>
-           </Link>
+            </Link>
             <Link
               className="me-3 confirm-text p-2 mb-0"
               to="#"
               onClick={showConfirmationAlert}
             >
               <i data-feather="trash-2" className="feather-trash-2"></i>
-           </Link>
+            </Link>
           </div>
         </div>
       ),
@@ -468,10 +468,10 @@ const ExpensesList = () => {
                         <div className="mb-3">
                           <label className="form-label">Expense Category</label>
                           <Select
-                          classNamePrefix="react-select"
-                          options={optionsModalOne}
-                          placeholder="Choose"
-                        />
+                            classNamePrefix="react-select"
+                            options={optionsModalOne}
+                            placeholder="Choose"
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6">
